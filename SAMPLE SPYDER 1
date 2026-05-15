@@ -23,8 +23,9 @@
         browser.define_area()
         browser.download(documenttype='AUM')
 
-        desired_positions = 'CIO,Chief Executive,CEO,Investment,Risk Management,Portfolio Manager,Portfolio Management,Risk Management,Trader,Research Associate'
+        browser.home_address('')
         browser.waitfor(clas="team-item")
+        desired_positions = 'CIO,Chief Executive,CEO,Investment,Risk Management,Portfolio Manager,Portfolio Management,Risk Management,Trader,Research Associate'
         browser.browser.execute_script("""function markRelevantPositions(e,t){let l=e.replace(/\\[\d*\\]/g,""),o=document.createElement("div");o.setAttribute("class","fds-relevant-group"),o.style.backgroundColor="rgba(255, 255, 0, 0.5)",o.style.position="relative",o.style.zIndex=2147483647;let r=findElementsByXpath(l);for(let n of r){let a=n.textContent.trim().replace(/ +(?= )/g,"").replace(/\\n\\s*/g,"\\n").split("\\n").map(e=>e.length<100?e+".":"").join(" ").trim().toLowerCase();if(n.style.border="6px solid darkviolet",t.some(e=>a.includes(e))){let s=document.createElement("div");s.appendChild(document.createTextNode(a)),o.appendChild(s),n.style.backgroundColor="rgba(0, 255, 0, 0.5)"}else n.style.backgroundColor="rgba(255, 0, 0, 0.5)"}document.body.insertBefore(o,document.body.firstChild);let i=function(e,t){return e.innerHTML.toLowerCase().localeCompare(t.innerHTML.toLowerCase())},d=Array.from(o.childNodes);d.sort(i);for(var p=0;p<d.length;p++)o.appendChild(d[p]);remove_duplicates(document.getElementsByClassName("fds-relevant-group")[0].childNodes)}function findElementsByXpath(e){let t=document.evaluate(e,document,null,XPathResult.UNORDERED_NODE_ITERATOR_TYPE,null),l=t.iterateNext(),o=[];for(;l;)o.push(l),l=t.iterateNext();return o}function remove_duplicates(e){for(var t=[],l=e.length-1;l>=0;l--){let o=e[l];t.includes(o.textContent)?o.parentNode.removeChild(o):t.push(o.textContent)}}markRelevantPositions("%s","%s".split(",").map(e=>e.toLowerCase()));"""%(browser.xpath_buffer,desired_positions))
         browser.reset()
         browser.waitfor(clas="fds-relevant-group")
