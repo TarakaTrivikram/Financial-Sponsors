@@ -7,6 +7,7 @@ Href
 
 Text
 //*[contains(text(),'')]
+//*[text()='']
 //*[contains(text(),'Chief Executive Officer')]
 //*[contains(text(),'Chief Executive Officer')]//parent::p//parent::div//preceding-sibling::div
 //*[contains(text(),'AUM')]//preceding-sibling::h3
