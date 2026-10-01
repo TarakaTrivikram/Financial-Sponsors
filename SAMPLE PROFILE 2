@@ -2,6 +2,9 @@
         browser.timeout=5
         if browser.search("",exitmode=False):
             browser.click()
+
+        browser.browser.execute_script('''var exist=document.querySelector("#cmpwrapper").shadowRoot.querySelector("#cmpbntyestxt");if(exist!=null){exist.click()}''')
+
         browser.search_via_xpath('')
         browser.define_area()
         browser.download(documenttype='Address')
