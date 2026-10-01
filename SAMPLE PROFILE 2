@@ -4,6 +4,8 @@
             browser.click()
 
         browser.browser.execute_script('''var exist=document.querySelector("#cmpwrapper").shadowRoot.querySelector("#cmpbntyestxt");if(exist!=null){exist.click()}''')
+        browser.browser.execute_script('''document.getElementById('usercentrics-root')?.remove()''')
+
 
         browser.search_via_xpath('')
         browser.define_area()
